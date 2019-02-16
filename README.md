@@ -2,6 +2,10 @@
 
 A dark theme for the regular expression testing website [Regexr](https://regexr.com).
 
+## Preview
+
+![Dark Regexr preview](https://archive.hugo.pro/.public/regexr-dark/regexr-dark.png)
+
 ## Installation
 
 After installing [Stylus](https://github.com/openstyles/stylus), click the button below to install Regexr Dark:
