@@ -1,0 +1,137 @@
+/* ==UserStyle==
+@name           Regexr Dark
+@namespace      github.com/Calinou
+@description    Dark theme for regexr.com
+@version        1.0.0
+@author         Hugo Locurcio (https://hugo.pro/)
+@homepageURL    https://github.com/Calinou/regexr-dark
+@supportURL     https://github.com/Calinou/regexr-dark/issues
+@updateURL      https://github.com/Calinou/regexr-dark/regexr-dark.user.css
+@license        CC0-1.0
+@preprocessor   less
+==/UserStyle== */
+
+@-moz-document domain("regexr.com") {
+  // Base colors (most colors are derived from this scheme)
+  @colors: {
+    background: hsl(210, 7%, 20%);
+    foreground: hsl(0, 0%, 91%);
+    accent: hsl(210, 50%, 38%);
+  }
+
+  @token-colors: {
+    anchor: hsl(15, 60%, 70%);
+    char: @colors[foreground];
+    charclass: hsl(5, 80%, 60%);
+    decorator: darken(@colors[foreground], 42%);
+    esc: hsl(300, 80%, 80%);
+    group: hsl(125, 70%, 70%);
+    quant: hsl(210, 95%, 66%);
+    set: hsl(50, 80%, 75%);
+  }
+
+  each(@token-colors, {
+    .exp-@{key} {
+      color: @value;
+    }
+  });
+
+  .CodeMirror pre {
+    color: @colors[foreground] !important;
+  }
+
+  .CodeMirror-cursor {
+    border-left: 1px solid @colors[foreground];
+  }
+
+  // Only override the input tool's background color,
+  // otherwise canvas-based match highlights won't be visible
+  .inputtool .CodeMirror {
+    background-color: @colors[background];
+  }
+
+  // Darken the match color to fit dark themes better
+  // Match highlights in the editor aren't controlled by this class,
+  // but by a canvas instead.
+  span.match {
+    background-color: @colors[accent];
+    color: @colors[foreground];
+  }
+
+  .doc > section {
+    background-color: @colors[background];
+
+    & > header {
+      background-color: lighten(@colors[background], 9%);
+      color: @colors[foreground];
+    }
+
+    &.expression > header {
+      background-color: lighten(@colors[background], 9%);
+    }
+
+    &.tools > article {
+      background-color: @colors[background];
+    }
+
+    &.tools > article .details > div.desc,
+    &.tools > article .details > div.desc code {
+      color: @colors[foreground];
+    }
+
+    &.tools > article .inputtool .result textarea {
+      background-color: lighten(@colors[background], 6%);
+      color: @colors[foreground];
+    }
+
+    &.tools>article .inputtool .editor {
+      border-bottom: 1px solid lighten(@colors[background], 15%);
+    }
+
+    &.tools > article .explain div {
+      border-color: lighten(@colors[background], 15%);
+      background-color: @colors[background];
+      color: @colors[foreground];
+    }
+
+    // The highlight color can't be manipulated directly
+    // from CSS, so darken the canvas instead
+    &.text > .editor > .pad > canvas.highlights {
+      filter: brightness(0.7);
+    }
+  }
+
+  .segcontrol > .selected {
+    background-color: lighten(@colors[background], 45%);
+  }
+
+  // Colors associated to each box type in the Explain tool
+  // Numeric values are used to style capturing groups
+  // with increasing levels of nesting
+  @explain-colors: {
+    0: hsl(125, 80%, 85%);
+    1: hsl(125, 80%, 75%);
+    2: hsl(125, 80%, 65%);
+    3: hsl(125, 80%, 55%);
+    set: hsl(55, 85%, 60%);
+  };
+
+  // Styles for boxes in the Explain tool
+  each(@explain-colors, {
+    .doc > section.tools > article .explain .exp-group-@{key} {
+      background-color: mix(@colors[background], @value, 85%);
+      color: tint(@value, 50%);
+    }
+  });
+
+  .sidebar > .full {
+    & > .content code em {
+      background-color: @colors[accent];
+      color: @colors[foreground];
+    }
+
+    & > .hello {
+      border-top: 3px solid lighten(@colors[background], 16%);
+    }
+  }
+}
