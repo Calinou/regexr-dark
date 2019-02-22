@@ -50,9 +50,9 @@
     background-color: @colors[background];
   }
 
-  // Darken the match color to fit dark themes better
+  // Darken the match color to fit dark themes better.
   // Match highlights in the editor aren't controlled by this class,
-  // but by a canvas instead.
+  // but by a canvas instead
   span.match {
     background-color: @colors[accent];
     color: @colors[foreground];
@@ -105,7 +105,7 @@
     background-color: lighten(@colors[background], 45%);
   }
 
-  // Colors associated to each box type in the Explain tool
+  // Colors associated to each box type in the Explain tool.
   // Numeric values are used to style capturing groups
   // with increasing levels of nesting
   @explain-colors: {
