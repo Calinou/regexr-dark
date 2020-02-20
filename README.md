@@ -1,5 +1,13 @@
 # Dark theme UserCSS for Regexr
 
+___
+
+**This userstyle is deprecated since October 2019. Regexr now ships with a dark
+theme option which can be accessed by clicking the "moon" icon in the top-right
+corner.**
+
+___
+
 A dark theme for the regular expression testing website [Regexr](https://regexr.com).
 
 ## Preview
